@@ -2134,11 +2134,11 @@ fi
 
 # If we have set a CC compiler flag for thread support then
 # check if it works for CXX, too.
-ac_cv_cxx_thread=no
 if test ! -z "$CXX"
 then
 AC_MSG_CHECKING(whether $CXX also accepts flags for thread support)
-ac_save_cxx="$CXX"
+AC_CACHE_VAL(ac_cv_cxx_thread,
+[ac_save_cxx="$CXX"
 
 if test "$ac_cv_kpthread" = "yes"
 then
@@ -2167,9 +2167,11 @@ then
   fi
   rm -fr conftest*
 fi
+CXX="$ac_save_cxx"])
 AC_MSG_RESULT($ac_cv_cxx_thread)
+else
+  ac_cv_cxx_thread=no
 fi
-CXX="$ac_save_cxx"
 
 dnl # check for ANSI or K&R ("traditional") preprocessor
 dnl AC_MSG_CHECKING(for C preprocessor type)
